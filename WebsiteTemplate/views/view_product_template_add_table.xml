@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record model="ir.ui.view" id="view_product_template_inherit_table">
+            <field name="name">product.template.form.inherit</field>
+            <field name="model">product.template</field>
+            <field name="inherit_id" ref="product.product_template_only_form_view" />
+            <field name="arch" type="xml">
+                <xpath expr="//div[@name='options']" position="inside">
+                    <span class="d-inline-block">
+                        <field id="checkAddDetail" name="checkAddDetail"/>
+                        <label for="checkAddDetail" />
+                    </span>
+                </xpath>
+
+
+                <xpath expr="//notebook/page[@name='general_information']" position="after">
+                    <page string="Description Block" name="description_block"
+                        invisible="not checkAddDetail">
+                        <field name="product_template_id"  widget="one2many"
+                            context="{'show_attribute': False , }">
+                            <tree string="Variants" editable="bottom" >   
+                                <!-- <field name="id"  />     -->
+                                <field name="sequence" widget="handle" />   
+                                <!-- <field name="sequence" />                        -->
+                                <!-- <field name="sl_no"  /> -->
+                                <field name="product_table_block_type" />
+                                <field name="product_table_block_title" />
+                                <field name="product_table_block_description"/>
+                                <field name="product_table_block_image" />
+                                
+                              
+                            </tree>
+                        </field>
+
+
+                    </page>
+                </xpath>
+
+
+            </field>
+
+
+        </record>
+
+     
+        
+
+
+    </data>
+</odoo>
